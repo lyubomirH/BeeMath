@@ -1,57 +1,20 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
-using Newtonsoft.Json;
 
-var builder = WebApplication.CreateBuilder(args);
-
-// Добавяне на услуги за контролери
-builder.Services.AddControllers();
-
-var app = builder.Build();
-
-if (app.Environment.IsDevelopment())
+namespace MathAIProject
 {
-    app.UseDeveloperExceptionPage();
-}
-
-app.UseRouting();
-
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapPost("/solve", async context =>
+    public class Program
     {
-        // Прочитане на JSON данните от заявката
-        var requestBody = await new StreamReader(context.Request.Body).ReadToEndAsync();
-        var requestData = JsonConvert.DeserializeObject<MathProblemRequest>(requestBody);
+        public static void Main(string[] args)
+        {
+            CreateHostBuilder(args).Build().Run();
+        }
 
-        // Решаване на математическата задача
-        var result = SolveMathProblem(requestData.Problem);
-
-        // Връщане на резултата като JSON
-        var response = new { result = result };
-        await context.Response.WriteAsJsonAsync(response);
-    });
-});
-
-app.Run();
-
-string SolveMathProblem(string problem)
-{
-    try
-    {
-        // Използваме DataTable.Compute за решаване на математически изрази
-        var result = new System.Data.DataTable().Compute(problem, null);
-        return result.ToString();
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                });
     }
-    catch (Exception e)
-    {
-        return $"Грешка: {e.Message}";
-    }
-}
-
-public class MathProblemRequest
-{
-    public string Problem { get; set; }
 }
