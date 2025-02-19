@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Math Solver</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>AI Math Solver</h1>
+        <input type="text" id="mathProblem" placeholder="Въведете вашата математическа задача (напр. 2 + 2)">
+        <button onclick="solveMath()">Реши</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        async function solveMath() {
+            const problem = document.getElementById('mathProblem').value;
+            const response = await fetch('/solve', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ problem: problem }),
+            });
+            const data = await response.json();
+            document.getElementById('result').innerText = `Резултат: ${data.result}`;
+        }
+    </script>
+</body>
+</html>
