@@ -1,0 +1,193 @@
+:root {
+  --gold: #FFD700;
+  --dark-gold: #FFC000;
+  --charcoal: #333333;
+  --light-gray: #f5f5f5;
+  --medium-gray: #e0e0e0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--light-gray);
+  color: var(--charcoal);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  padding-top: 60px; /* Add padding to prevent content from being hidden behind the fixed nav */
+}
+
+header {
+  background-color: var(--gold);
+  color: var(--charcoal);
+  padding: 10px 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  margin: 0;
+  color: var(--charcoal);
+  font-size: 24px;
+}
+
+nav a {
+  background-color: var(--charcoal);
+  color: var(--gold);
+  text-decoration: none;
+  font-weight: bold;
+  margin-left: 20px;
+  padding: 10px 40px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+  background-color: var(--dark-gold);
+  color: var(--charcoal)
+}
+
+#math-keyboard {
+  margin-bottom: 20px;
+  /*color: white;*/
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#math-keyboard button {
+  padding: 10px 15px;
+  margin: 5px;
+  font-size: 18px;
+  background-color: var(--gold);
+  color: var(--charcoal);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  position: relative;
+}
+
+#math-keyboard button:hover {
+  background-color: var(--gold);
+}
+
+#math-keyboard button::after {
+  content: attr(title);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--charcoal);
+  color: var(--charcoal);
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+#math-keyboard button:hover::after {
+  opacity: 1;
+  color: var(--gold);
+  visibility: visible;
+}
+
+#problemInput {
+  width: 300px;
+  padding: 10px;
+  font-size: 16px;
+  margin-bottom: 20px;
+  border: 1px solid var(--charcoal);
+  border-radius: 5px;
+}
+
+#solveButton {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: var(--gold);
+  color: var(--charcoal);
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+#solveButton:hover {
+  background-color: var(--gold);
+}
+
+#solution {
+  color: white;
+  margin-top: 20px;
+  font-size: 18px;
+  padding: 20px;
+  background-color: var(--charcoal);
+  border: 1px solid var(--charcoal);
+  border-radius: 5px;
+  box-shadow: 0 2px 4px white;
+  max-width: 500px;
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.problem-display {
+  font-size: 20px;
+  margin: 20px 0;
+  padding: 15px;
+  background-color: var(--charcoal);
+  border-radius: 5px;
+}
+
+.solution-display {
+  font-size: 18px;
+  margin: 20px 0;
+  padding: 15px;
+  background-color: var(--charcoal);
+  border-radius: 5px;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.controls label {
+  font-weight: bold;
+}
+
+.controls select, .controls button {
+  padding: 8px 12px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid var(--charcoal);
+}
+
+.controls button {
+  background-color: var(--gold);
+  color: var(--charcoal);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.controls button:hover {
+  background-color: #45a049;
+}
