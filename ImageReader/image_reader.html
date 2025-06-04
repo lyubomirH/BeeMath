@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Разчитане на задачи от снимки - BeeMath</title>
+    <link rel="stylesheet" href="../About/about.css">
+    <link rel="stylesheet" href="image_reader.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+</head>
+<body>
+    <div class="container">
+  <header>
+    <div class="logo-container">
+      <h1>Математически AI помощник</h1>
+    </div>
+    <nav>
+      <a href="/Home/home.html">Начало</a>
+      <a href="/About/about.html">За нас</a>
+      <a href="/Calculator/index.html">Калкулатор</a>
+      <a href="/Generator/generator.html">Генератор</a>
+      <a href="/ImageReader/image_reader.html">Снимки</a>
+    </nav>
+  </header>
+
+        <section class="hero">
+            <h1>Разчети задача от снимка</h1>
+            <p>Качи снимка и виж решението стъпка по стъпка!</p>
+        </section>
+
+        <main>
+            <section class="upload-section">
+                <h2>Качете снимка на математическа задача</h2>
+                <div class="upload-container">
+                    <input type="file" id="imageInput" accept="image/*" hidden>
+                    <button id="uploadButton" class="cta-button">
+                        <i class="fas fa-upload"></i> Изберете снимка
+                    </button>
+                    <div id="preview" class="image-preview"></div>
+                </div>
+            </section>
+
+            <section class="result-section" style="display: none;">
+                <h3>Разчетена задача:</h3>
+                <div id="recognizedText" class="recognized-text"></div>
+                <button id="solveButton" class="cta-button">
+                    Реши задачата
+                </button>
+                <div id="solution" class="solution"></div>
+            </section>
+        </main>
+    </div>
+    <script src="image_reader.js"></script>
+</body>
+</html>

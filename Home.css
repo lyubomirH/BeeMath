@@ -1,0 +1,25 @@
+body {
+  background-color: #ffb300;
+  background-image: url("data:image/svg+xml;utf8,<svg width='120' height='104' viewBox='0 0 120 104' fill='none' xmlns='http://www.w3.org/2000/svg'><polygon points='60,4 116,34 116,94 60,124 4,94 4,34' fill='%23ffd54f' stroke='%23ff9800' stroke-width='4'/></svg>");
+  background-size: 120px 104px;
+  background-repeat: repeat;
+  min-height: 100vh;
+  margin: 0;
+  font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+}
+
+.center-container {
+  background: #fff8ed;
+  border-radius: 24px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.15);
+  max-width: 700px;
+  margin: 60px auto 40px auto;
+  padding: 48px 32px;
+  text-align: center;
+}
+
+h1, h2, h3 {
+  color: #222;
+  font-weight: 900;
+  letter-spacing: 2px;
+}

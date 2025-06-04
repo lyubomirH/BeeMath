@@ -3,38 +3,46 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Математически AI помощник</title>
-  <link rel="png" type="image" href="/Bee_Logo.png">
+  <title>MathAI - Модерен помощник</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1/new.min.css">
   <link rel="stylesheet" href="styles.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.7.0/math.min.js"></script>
 </head>
 <body>
-  <header>
-    <div class="logo-container">
-      <h1>Математически AI помощник</h1>
-    </div>
-    <nav>
-      <a href="/Home/home.html">Начало</a>
-      <a href="/About/about.html">За нас</a>
-      <a href="/Generator/generator.html">Генератор на задачи</a>
-    </nav>
-  </header>
+  <div class="container">
+    <header>
+      <div class="logo-container">
+        
+        <h1>Математически AI помощник</h1>
+      </div>
+      <nav>
+        <a href="/Home/home.html">Начало</a>
+        <a href="/About/about.html">За нас</a>
+        <a href="/Generator/generator.html">Генератор</a>
+        <a href="/ImageReader/image_reader.html">Снимки</a>
+      </nav>
+    </header>
 
-  <div id="math-keyboard">
-    <button title="Корен квадратен (√) - Изчислява корен квадратен от число. Пример: √(9) = 3">√</button>
-    <button title="Квадрат (²) - Повдига число на квадрат. Пример: 3² = 9">²</button>
-    <button title="Реципрочно (⁻¹) - Изчислява реципрочното на число (1/x). Пример: 2⁻¹ = 0.5">⁻¹</button>
-    <button title="Деление (÷) - Извършва деление на две числа. Пример: 6 ÷ 2 = 3">÷</button>
-    <button title="Умножение (×) - Извършва умножение на две числа. Пример: 3 × 4 = 12">×</button>
-    <button title="Пи (π) - Вмъква математическата константа π (3.14159...). Пример: 2π ≈ 6.283">π</button>
-    <button title="Степенуване (^) - Повдига число на степен. Пример: 2^3 = 8">^</button>
-    <button title="Събиране (+) - Извършва събиране на две числа. Пример: 2 + 3 = 5">+</button>
-    <button title="Изваждане (-) - Извършва изваждане на две числа. Пример: 5 - 2 = 3">-</button>
-    <button title="Скоби ( ) - Групира операции за приоритет. Пример: 2 × (3 + 4) = 14">( )</button>
-  </div>
-  <input type="text" id="problemInput" placeholder="Въведете задачата тук">
-  <button id="solveButton">Реши задачата</button>
-  <div id="solution"></div>
+    <main class="main-content">
+      <div class="math-pad">
+        <button class="math-btn" title="Корен квадратен">√</button>
+        <button class="math-btn" title="Квадрат">²</button>
+        <button class="math-btn" title="Реципрочно">⁻¹</button>
+        <button class="math-btn" title="Деление">÷</button>
+        <button class="math-btn" title="Умножение">×</button>
+        <button class="math-btn" title="Пи">π</button>
+        <button class="math-btn" title="Степен">^</button>
+        <button class="math-btn" title="Събиране">+</button>
+        <button class="math-btn" title="Изваждане">-</button>
+      </div>
+
+      <div class="input-group">
+        <input type="text" id="problemInput" placeholder="✏️ Въведете задача...">
+        <button id="solveButton">🔍 Реши задача</button>
+      </div>
+
+      <div id="solution"></div>
+    </main>
 
   <script src="script.js"></script>
 </body>

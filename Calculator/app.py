@@ -1,42 +1,71 @@
-from sympy import symbols, sqrt, sympify, Eq, solve
+from flask import Flask, request, jsonify
+import requests
 
-# Function to solve the math problem step by step
-def solve_problem(problem):
+app = Flask(__name__)
+
+DEEPSEEK_API_KEY = "sk-b415c8e5a3f24486b6c1f079d26e2f03"  # ⚠️ НЕ БЕЗОПАСНО!
+DEEPSEEK_URL = "https://api.deepseek.com/v1/chat/completions"
+
+@app.route("/chat", methods=["POST"])
+def chat():
+    user_input = request.json.get("question", "")
     try:
-        # Step 1: Display the original problem
-        print(f"Задача: {problem}")
+        headers = {
+            "Content-Type": "application/json",
+            "Authorization": f"Bearer {DEEPSEEK_API_KEY}"
+        }
+        
+        data = {
+            "model": "deepseek-chat",
+            "messages": [{"role": "user", "content": user_input}],
+            "temperature": 0.3
+        }
 
-        # Step 2: Replace symbols with sympy-compatible syntax
-        problem = problem.replace('√', 'sqrt(')  # Replace √ with sqrt(
-        problem = problem.replace('²', '**2')    # Replace ² with **2
-        problem = problem.replace('⁻¹', '**(-1)')  # Replace ⁻¹ with **(-1)
-        problem = problem.replace('÷', '/')      # Replace ÷ with /
-        problem = problem.replace('×', '*')      # Replace × with *
-        problem = problem.replace('π', 'pi')     # Replace π with pi
-
-        # Step 3: Parse the expression
-        x = symbols('x')
-        expr = sympify(problem)
-
-        # Step 4: Evaluate the expression step by step
-        print(f"Стъпка: {expr}")
-
-        # Step 5: Simplify and solve
-        simplified_expr = expr.simplify()
-        print(f"Стъпка: {simplified_expr}")
-
-        # Step 6: Display the final result
-        print(f"Резултат: {simplified_expr}")
-
+        response = requests.post(DEEPSEEK_URL, json=data, headers=headers)
+        response_data = response.json()
+        
+        if response.status_code != 200:
+            return jsonify({"error": response_data.get("message", "API грешка")}), 500
+            
+        return jsonify({"response": response_data["choices"][0]["message"]["content"]})
     except Exception as e:
-        print(f"Грешка: Невалидна математическа задача. ({str(e)})")
+        return jsonify({"error": str(e)}), 500
 
-# Main function
-def main():
-    # Example input
-    problem = input("Въведете задачата: ")
-    solve_problem(problem)
+@app.route('/generate_problem', methods=['POST'])
+def generate_problem():
+    data = request.json
+    difficulty = data.get('difficulty', 'easy')
+    problem_type = data.get('problemType', 'arithmetic')
 
-# Run the program
+    prompt = f"Генерирай {difficulty} математическа задача от тип {problem_type}."
+
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {DEEPSEEK_API_KEY}"
+    }
+    
+    api_data = {
+        "model": "deepseek-chat",
+        "messages": [{"role": "user", "content": prompt}]
+    }
+
+    try:
+        response = requests.post(
+            "https://api.deepseek.com/v1/chat/completions",
+            json=api_data,
+            headers=headers
+        )
+        
+        if response.status_code == 200:
+            result = response.json()
+            return jsonify({
+                'problem': result['choices'][0]['message']['content']
+            })
+        else:
+            return jsonify({'error': 'API Error'}), 500
+            
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
 if __name__ == "__main__":
-    main()
+    app.run(debug=True)

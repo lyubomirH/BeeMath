@@ -4,30 +4,33 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Генератор на задачи - Математически AI помощник</title>
-  <link rel="png" type="image" href="/Bee_Logo.png">
+  <link rel="stylesheet" href="../About/about.css">
   <link rel="stylesheet" href="generator.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.7.0/math.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
 </head>
 <body>
-  <header>
-    <div class="logo-container">
+  <div class="container">
+    <header>
+      <div class="logo-container">
+        <h1>Математически AI помощник</h1>
+      </div>
+      <nav>
+        <a href="/Home/home.html">Начало</a>
+        <a href="/About/about.html">За нас</a>
+        <a href="/Calculator/index.html">Калкулатор</a>
+        <a href="/Generator/generator.html">Генератор</a>
+        <a href="/ImageReader/image_reader.html">Снимки</a>
+      </nav>
+    </header>
 
-      <h1>Математически AI помощник</h1>
-    </div>
-    <nav>
-      <a href="/Home/home.html">Начало</a>
-      <a href="/About/about.html">За нас</a>
-      <a href="/Calculator/index.html">Калкулатор</a>
-    </nav>
-  </header>
+    <section class="hero">
+      <h1>Генерирай своя задача</h1>
+      <p>Избери ниво и тип, за да получиш интересна математическа задача!</p>
+    </section>
 
-  <main>
     <section>
-      <h2>Генератор на математически задачи</h2>
-      <p>
-        Изберете ниво на трудност и тип задача, за да генерирате случайна математическа задача.
-      </p>
-      
+      <h2 class="section-title">Генератор на математически задачи</h2>
       <div class="controls">
         <label for="difficulty">Ниво на трудност:</label>
         <select id="difficulty">
@@ -35,23 +38,19 @@
           <option value="medium">Средно</option>
           <option value="hard">Трудно</option>
         </select>
-        
         <label for="problemType">Тип задача:</label>
         <select id="problemType">
           <option value="arithmetic">Аритметика</option>
           <option value="algebra">Алгебра</option>
           <option value="geometry">Геометрия</option>
         </select>
-        
-        <button id="generateButton">Генерирай задача</button>
+        <button id="generateButton">Генерирай</button>
       </div>
-      
       <div id="generatedProblem" class="problem-display"></div>
       <button id="solveGeneratedButton" class="hidden">Реши задачата</button>
       <div id="generatedSolution" class="solution-display"></div>
     </section>
-  </main>
-
+  </div>
   <script src="generator.js"></script>
 </body>
 </html>
